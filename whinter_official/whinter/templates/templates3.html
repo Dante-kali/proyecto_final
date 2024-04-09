@@ -15,45 +15,28 @@
             text-align: center;
             margin-top: 20px;
         }
-        table {
-            width: 80%;
-            margin: 20px auto;
-            border-collapse: collapse;
+        .booking-item {
             background-color: #fff;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            margin: 20px auto;
+            padding: 20px;
+            width: 80%;
         }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        tr:hover {
-            background-color: #f2f2f2;
+        .booking-details {
+            margin-bottom: 10px;
         }
     </style>
 </head>
 <body>
     <h1>Lista de Reservas</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Servicio</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for booking in booking %}
-            <tr>
-                <td>{{ booking.id }}</td>
-                <td>{{ booking.name }}</td>
-                <td>{{ booking.service }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    {% for booking in booking %}
+    <div class="booking-item">
+        <div class="booking-details">
+            <strong>ID:</strong> {{ booking.id }}<br>
+            <strong>Nombre:</strong> {{ booking.name }}<br>
+            <strong>Servicio:</strong> {{ booking.service }}
+        </div>
+    </div>
+    {% endfor %}
 </body>
 </html>
