@@ -48,4 +48,7 @@ def create(request, name, service):
     print("-" * 100)
     print(request.method)
     booking = Booking.objects.create(name=name, service=service)
-    return HttpResponse(f'the booking {booking}')
+    booking = {
+        'booking' : booking
+    }
+    return render(request, 'templates4.html', )
