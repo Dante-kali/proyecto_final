@@ -4,20 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booking Search Results</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .title {
+            color: #333;
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .subtitle {
+            color: #666;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .searched-name {
+            color: #888;
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .booking-item {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .no-booking {
+            color: #888;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-    <h1>Booking Search Results</h1>
-    <p>Searched Name: {{ name }}</p>
+    <div class="container">
+        <h1 class="title">Booking Search Results</h1>
+        <p class="searched-name">Searched Name: {{ name }}</p>
 
-    {% if bookings %}
-        <h2>Bookings:</h2>
-        <ul>
-            {% for booking in bookings %}
-                <li>{{ booking.name }} - {{ booking.service }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No bookings found for the searched name.</p>
-    {% endif %}
+        {% if bookings %}
+            <h2 class="subtitle">Bookings:</h2>
+            <div class="list-group">
+                {% for booking in bookings %}
+                    <a href="#" class="list-group-item list-group-item-action booking-item">{{ booking.name }} - {{ booking.service }}</a>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="no-booking">No bookings found for the searched name.</p>
+        {% endif %}
+    </div>
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

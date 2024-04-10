@@ -37,7 +37,7 @@ def list(request):
     
     booking = Booking.objects.all()
     client_list= {
-        'booking' : booking
+        'bookings' : booking
     }
     return render(request, 'templates3.html', client_list)
 
@@ -51,4 +51,4 @@ def create(request, name, service):
     booking = {
         'booking' : booking
     }
-    return render(request, 'templates4.html', )
+    return render(request, 'templates4.html', booking)

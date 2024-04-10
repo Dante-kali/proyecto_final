@@ -20,46 +20,66 @@ from django.urls import path, include
 from django.http import HttpResponse
 
 def welcome(request):
-    return HttpResponse(
-        """<!DOCTYPE html>
+    return HttpResponse('''<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"> 
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome Page</title>
+    <title>Welcome to Whinter Official</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             background-color: #f4f4f4;
-            padding: 20px;
+            padding: 40px;
+            margin: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .title {
+            color: #333;
+            font-weight: bold;
+            font-size: 32px;
+            margin-bottom: 20px;
             text-align: center;
         }
-        h1 {
-            color: #333;
-        }
-        h2 {
+        .subtitle {
             color: #666;
-            margin-top: 20px;
-        }
-        p {
-            color: #888;
+            font-size: 24px;
+            margin-top: 40px;
             margin-bottom: 20px;
+            text-align: center;
         }
-        a {
+        .available-path {
             color: #007bff;
             text-decoration: none;
+            border: 1px solid #007bff;
+            padding: 10px 20px;
+            border-radius: 20px;
         }
-        a:hover {
-            text-decoration: underline;
+        .available-path:hover {
+            text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to Whinter Official</h1>
-    <h2>Explore Whinter</h2>
-    <p>Available Path: <a href="/whinter">/whinter</a></p>
+    <div class="container">
+        <h1 class="title">Welcome to Whinter Official</h1>
+        <h2 class="subtitle">Explore Whinter</h2>
+        <p>Available Path: <a href="/whinter" class="list-group-item list-group-item-action btn btn-success btn-block btn-path">whinter</a>
+    </div>
+    <!-- Bootstrap JS (Optional) -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
-</html>"""
+</html>
+
+'''
+        
         )
 urlpatterns = [
     path('admin/', admin.site.urls),
