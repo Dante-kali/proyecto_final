@@ -52,3 +52,14 @@ def create(request, name, service):
         'booking' : booking
     }
     return render(request, 'create.html', booking)
+
+
+def detail(request, booking_id):
+    print("-" * 100)
+    print("-" * 100)
+    print(request.method)
+    reserva = Booking.objects.get(id = booking_id)
+    reserva = {
+        'reserva' : reserva
+    }
+    return render(request, 'detail.html', reserva)

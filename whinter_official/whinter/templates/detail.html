@@ -3,15 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Reservas</title>
+    <title>Detalles de Reserva</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background-color: #f8f9fa;
-            margin: 0;
-            padding: 0;
         }
         .navbar {
             background-color: #000;
@@ -20,25 +19,22 @@
         }
         .navbar-brand {
             color: #fff;
-            font-size: 18px;
+            font-size: 18px; /* Reducir el tamaño del texto */
             font-weight: bold;
-            padding-right: 20px;
-            text-align: center;
-        }
-        .navbar-nav {
-            justify-content: space-between; /* Para distribuir los enlaces uniformemente */
+            padding-right: 20px; /* Añadir un espacio a la derecha */
         }
         .navbar-nav .nav-link {
             color: #fff !important;
-            font-size: 14px;
-            padding: 5px 10px;
+            font-size: 14px; /* Reducir el tamaño del texto */
+            padding: 5px 10px; /* Reducir el espacio entre enlaces */
         }
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 28px;
+        .title {
+            color: #000;
+            font-size: 36px;
             font-weight: bold;
-            color: #333;
+            margin-bottom: 20px; /* Ajustar el margen inferior */
+            text-align: center;
+            margin-top: 20px; /* Agregar margen superior */
         }
         .subtitle {
             color: #666;
@@ -51,15 +47,9 @@
             border: 1px solid #ccc;
             margin-bottom: 10px;
             border-radius: 5px;
-            padding: 10px;
-            transition: background-color 0.3s;
         }
         .list-group-item:hover {
             background-color: #f0f0f0;
-            cursor: pointer;
-        }
-        .booking-item {
-            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -67,18 +57,18 @@
     <!-- Barra de navegación -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container">
-            <a class="navbar-brand" href="/">Whinter</a> <!-- Alineado al lado izquierdo -->
-
+            <a class="navbar-brand" href="/">Whinter</a>
+            <!-- Enlaces de navegación -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav ml-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="/whinter">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/searching/name">Searching</a>
+                        <a class="nav-link" href="/whinter/searching/name">Searching</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/create/name/service">Create</a>
+                        <a class="nav-link" href="/whinter/create/name/service">Create</a>
                     </li>
                 </ul>
             </div>
@@ -86,20 +76,16 @@
     </nav>
     <!-- Fin de la barra de navegación -->
 
-    <div class="container">
-        <h1>Lista de Reservas</h1>
+    <div class="container mt-4">
+        <h1 class="mb-4">Detalles de Reserva</h1>
+        <!-- Contenedor de detalles de reserva -->
         <div class="container">
-            <!-- Aquí es donde se renderizarían las reservas -->
-            <!-- Asumiendo que las reservas se pasan como una lista llamada "bookings" -->
-            {% for booking in bookings %}
-            <a href="/detail/{{ booking.id }}" class="list-group-item list-group-item-action booking-item">
-                <div class="booking-details">
-                    <strong>ID:</strong> {{ booking.id }}<br>
-                    <strong>Nombre:</strong> {{ booking.name }}<br>
-                    <strong>Servicio:</strong> {{ booking.service }}
-                </div>
-            </a>
-            {% endfor %}
+            <div class="booking-details">
+                <p><strong>ID:</strong> {{ reserva.id }}</p>
+                <p><strong>Nombre:</strong> {{ reserva.name }}</p>
+                <p><strong>Servicio:</strong> {{ reserva.service }}</p>
+                <!-- Agrega más detalles de la reserva aquí según sea necesario -->
+            </div>
         </div>
     </div>
 
