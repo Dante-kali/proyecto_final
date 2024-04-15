@@ -12,7 +12,7 @@ def home(request):
     date = {
         'date' : "Welcome to the Aplication 'Whinter'"
     }
-    return render(request, 'templates1.html', date)
+    return render(request, 'index.html', date)
 
 
 # search name
@@ -26,7 +26,7 @@ def search(request, name):
         'name' : name,
         'bookings' : booking
     }
-    return render(request, 'templates2.html', context)
+    return render(request, 'search.html', context)
 
  
 # client list
@@ -39,7 +39,7 @@ def list(request):
     client_list= {
         'bookings' : booking
     }
-    return render(request, 'templates3.html', client_list)
+    return render(request, 'list.html', client_list)
 
 
 # create booking 
@@ -51,4 +51,4 @@ def create(request, name, service):
     booking = {
         'booking' : booking
     }
-    return render(request, 'templates4.html', booking)
+    return render(request, 'create.html', booking)
