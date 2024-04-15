@@ -6,56 +6,87 @@
     <title>Lista de Reservas</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Estilos personalizados -->
     <style>
         body {
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            background-color: #f4f4f4;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 0;
         }
-        .container {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        /* Estilo para la barra de navegación */
+        .navbar {
+            background-color: #000;
+            border-bottom: 0.5px solid rgba(255, 255, 255, 0.2); /* Ajuste al borde superior */
+            padding: 5px 0; /* Reducir el espacio entre la barra y el contenido */
         }
-        h1 {
-            text-align: center;
-            margin-top: 20px;
-            font-size: 28px;
+        .navbar-brand {
+            color: #fff;
+            font-size: 18px;
             font-weight: bold;
-            color: #333;
         }
+        .navbar-nav {
+            margin-left: auto;
+        }
+        .navbar-nav .nav-link {
+            color: #fff !important;
+            font-size: 14px;
+            padding: 5px 10px;
+        }
+        /* Estilos para la lista de reservas */
         .booking-item {
             background-color: #fff;
-            margin-top: 20px;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            padding: 10px;
         }
         .booking-details {
-            margin-bottom: 10px;
-        }
-        .booking-details strong {
+            font-size: 16px;
             color: #333;
-            font-weight: bold;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Booking list </h1>
-        {% for booking in bookings %}
-        <div class="booking-item">
-            <div class="booking-details">
-                <strong>ID:</strong> {{ booking.id }}<br>
-                <strong>Nombre:</strong> {{ booking.name }}<br>
-                <strong>Servicio:</strong> {{ booking.service }}
+    <!-- Barra de navegación -->
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">Whinter</a>
+            <!-- Enlaces de navegación -->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/whinter">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/whinter/searching/name">Searching</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/whinter/create/name/service">Create</a>
+                    </li>
+                </ul>
             </div>
         </div>
-        {% endfor %}
+    </nav>
+    <!-- Fin de la barra de navegación -->
+
+    <div class="container mt-4">
+        <h1 class="mb-4">Lista de Reservas</h1>
+        <!-- Contenedor de reservas -->
+        <div class="container">
+            <!-- Asumiendo que las reservas se pasan como una lista llamada "bookings" -->
+            {% for booking in bookings %}
+            <div class="booking-item">
+                <div class="booking-details">
+                    <strong>ID:</strong> {{ booking.id }}<br>
+                    <strong>Nombre:</strong> {{ booking.name }}<br>
+                    <strong>Servicio:</strong> {{ booking.service }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
     </div>
+
     <!-- Bootstrap JS (Optional) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
