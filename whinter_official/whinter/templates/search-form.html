@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Reservas</title>
+    <title>Buscar Reservas</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -33,39 +33,28 @@
             font-size: 14px;
             padding: 5px 10px;
         }
-        h1 {
+        h2 {
             text-align: center;
             margin-top: 20px;
             font-size: 28px;
             font-weight: bold;
             color: #333;
         }
-        .subtitle {
-            color: #666;
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
+        .card {
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
-        .list-group-item {
-            background-color: #fff;
-            border: 1px solid #ccc;
-            margin-bottom: 10px;
-            border-radius: 5px;
-            padding: 10px;
-            transition: background-color 0.3s;
+        .card-header {
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 15px 15px 0 0;
         }
-        .list-group-item:hover {
-            background-color: #f0f0f0;
-            cursor: pointer;
-        }
-        .booking-item {
+        .form-group {
             margin-bottom: 20px;
         }
-        .booking-btn {
-            margin-top: 10px;
-            border-radius: 20px;
-            padding: 5px 15px;
-            font-size: 14px;
+        .btn-search {
+            width: 100%;
         }
     </style>
 </head>
@@ -81,10 +70,10 @@
                         <a class="nav-link" href="/whinter">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/whinter/searching-form">Searching</a>
+                        <a class="nav-link" href="/searching/name">Searching</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/whinter/create/name/service">Create</a>
+                        <a class="nav-link" href="/create/name/service">Create</a>
                     </li>
                 </ul>
             </div>
@@ -92,23 +81,30 @@
     </nav>
     <!-- Fin de la barra de navegación -->
 
-    <div class="container">
-        <h1>Lista de Reservas</h1>
+    <section class="py-5">
         <div class="container">
-            <!-- Aquí es donde se renderizarían las reservas -->
-            <!-- Asumiendo que las reservas se pasan como una lista llamada "bookings" -->
-            {% for booking in bookings %}
-            <div class="list-group-item list-group-item-action booking-item">
-                <div class="booking-details">
-                    <strong>ID:</strong> {{ booking.id }}<br>
-                    <strong>Nombre:</strong> {{ booking.name }}<br>
-                    <strong>Servicio:</strong> {{ booking.service }}
+            <h2 class="mb-4">Buscar Reservas</h2>
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <div class="card border-0 shadow-lg">
+                        <div class="card-header bg-primary text-white">
+                            <h5 class="mb-0">Filtros de búsqueda</h5>
+                        </div>
+                        <div class="card-body">
+                            <form method="POST" action="{% url 'search' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="name">Nombre:</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Ingrese un nombre...">
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-block btn-search">Buscar</button>
+                            </form>
+                        </div>
+                    </div>
                 </div>
-                <a href="/whinter/detail/{{ booking.id }}" class="btn btn-primary booking-btn rounded-pill">Ver Detalles</a>
             </div>
-            {% endfor %}
         </div>
-    </div>
+    </section>
 
     <!-- Bootstrap JS (Optional) -->
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

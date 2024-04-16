@@ -101,7 +101,7 @@
             <h2 class="subtitle">Bookings:</h2>
             <div class="list-group">
                 {% for booking in bookings %}
-                    <a href="#" class="list-group-item list-group-item-action booking-item">{{ booking.name }} - {{ booking.service }}</a>
+                    <a href="/whinter/detail/{{ booking.id }}" class="list-group-item list-group-item-action booking-item">{{ booking.name }} - {{ booking.service }}</a>
                 {% endfor %}
             </div>
         {% else %}

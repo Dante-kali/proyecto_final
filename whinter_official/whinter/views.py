@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Booking
+from .form import SearchForm
 # Create your views here.
 
 # home
@@ -13,20 +14,6 @@ def home(request):
         'date' : "Welcome to the Aplication 'Whinter'"
     }
     return render(request, 'index.html', date)
-
-
-# search name
-def search(request, name):
-    print("-" * 100)
-    print("-" * 100)
-    print(request.method)
-    
-    booking = Booking.objects.filter(name=name).all()
-    context = {
-        'name' : name,
-        'bookings' : booking
-    }
-    return render(request, 'search.html', context)
 
  
 # client list
@@ -63,3 +50,25 @@ def detail(request, booking_id):
         'reserva' : reserva
     }
     return render(request, 'detail.html', reserva)
+
+
+def search_form(request):
+    print("-" * 100)
+    print("-" * 100)
+    print(request.method)
+    if request.method == 'GET':
+        form = SearchForm()
+        form = {
+            'form' : form
+        }
+        return render(request, 'search-form.html', form)
+    
+    elif request.method == 'POST':
+        form = SearchForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['name']
+        booking = Booking.objects.filter(name=name).all()
+        context = {
+            'bookings' : booking
+        }
+    return render(request, 'search.html', context)
