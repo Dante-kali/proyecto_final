@@ -16,9 +16,11 @@ from django.db import models
 #         return f'this is a booking for {self.name} and request {self.service}'
 
 class Booking(models.Model):
-    
-    name = models.CharField(max_length=50)
-    service = models.CharField(max_length=50)
+    name = models.CharField(max_length=100)
+    service = models.CharField(max_length=100)
+    hora_inicio = models.DateTimeField()
+    hora_fin = models.DateTimeField()
+    descripcion = models.TextField()
 
     def __str__(self):
         return f'this is a booking for {self.name} and request {self.service}'
