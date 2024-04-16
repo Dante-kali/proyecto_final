@@ -68,7 +68,7 @@
                         <a class="nav-link" href="/whinter/searching/{{ reserva.name }}">Searching</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/whinter/create/{{ reserva.name }}/ {{ reserva.service }}">Create</a>
+                        <a class="nav-link" href="/whinter/create/{{ reserva.name}}/{{ reserva.service }}">Create</a>
                     </li>
                 </ul>
             </div>
@@ -84,6 +84,7 @@
                 <p><strong>ID:</strong> {{ reserva.id }}</p>
                 <p><strong>Nombre:</strong> {{ reserva.name }}</p>
                 <p><strong>Servicio:</strong> {{ reserva.service }}</p>
+                <p><strong>Fecha:</strong> {{ reserva.fecha }}</p>
                 <p><strong>Hora de inicio:</strong> {{ reserva.hora_inicio | date:"H:i" }}</p>
                 <p><strong>Hora de fin:</strong> {{ reserva.hora_fin | date:"H:i" }}</p>
                 <p><strong>Descripción:</strong> {{ reserva.descripcion }}</p>

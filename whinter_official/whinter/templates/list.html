@@ -61,6 +61,12 @@
         .booking-item {
             margin-bottom: 20px;
         }
+        .booking-btn {
+            margin-top: 10px;
+            border-radius: 20px;
+            padding: 5px 15px;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -92,13 +98,14 @@
             <!-- Aquí es donde se renderizarían las reservas -->
             <!-- Asumiendo que las reservas se pasan como una lista llamada "bookings" -->
             {% for booking in bookings %}
-            <a href="/whinter/detail/{{ booking.id }}" class="list-group-item list-group-item-action booking-item">
+            <div class="list-group-item list-group-item-action booking-item">
                 <div class="booking-details">
                     <strong>ID:</strong> {{ booking.id }}<br>
                     <strong>Nombre:</strong> {{ booking.name }}<br>
                     <strong>Servicio:</strong> {{ booking.service }}
                 </div>
-            </a>
+                <a href="/whinter/detail/{{ booking.id }}" class="btn btn-primary booking-btn rounded-pill">Ver Detalles</a>
+            </div>
             {% endfor %}
         </div>
     </div>
