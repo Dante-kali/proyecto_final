@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 
-from .models import Booking
-from .form import SearchForm
+from .models import Booking, Sala
+from .form import SearchForm, CreateForm
 # Create your views here.
 
 # home
@@ -72,3 +72,30 @@ def search_form(request):
             'bookings' : booking
         }
     return render(request, 'search.html', context)
+
+
+def create_sala(request):
+    print("-" * 100)
+    print("-" * 100)
+    print(request.method)
+    context = {
+        'create' : CreateForm
+    }
+    return render(request, 'create-form.html', context)
+
+
+def create_form(request):
+    if request.method == "GET":
+        contexto = {"create_form": CreateForm()}
+        return render(request, 'sala-form.html', contexto)
+    
+    elif request.method == "POST":
+        form = CreateForm(request.POST)
+        if form.is_valid():
+            nombre = form.cleaned_data['nombre']
+            disponible = form.cleaned_data['disponible']
+            capacidad = form.cleaned_data['capacidad']
+            descripcion = form.cleaned_data['descripcion']
+            nueva_sala = Sala(nombre=nombre, disponible=disponible, capacidad=capacidad, descripcion=descripcion)
+            nueva_sala.save()
+            return detail(request, nueva_sala.id)

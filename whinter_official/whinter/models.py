@@ -26,3 +26,13 @@ class Booking(models.Model):
 
     def __str__(self):
         return f'this is a booking for {self.name} and request {self.service}'
+    
+
+class Sala(models.Model):
+    nombre = models.CharField(max_length=100)
+    disponible = models.BooleanField(default=True)
+    capacidad = models.IntegerField()
+    descripcion = models.TextField(blank=True, null=True)
+
+    def __str__(self):
+        return f"{self.nombre} - {'Disponible' if self.disponible else 'No Disponible'} - Capacidad: {self.capacidad}"
