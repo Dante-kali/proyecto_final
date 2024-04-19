@@ -86,21 +86,25 @@ def search_form(request):
 def create_sala(request):
     if request.method == "GET":
         contexto = {"create_form": CreateSalaForm()}
-        return render(request, 'create-sala.html', contexto)
-    
+        return render(request, "create-sala.html", contexto)
     elif request.method == "POST":
         form = CreateSalaForm(request.POST)
         if form.is_valid():
-            nombre = form.cleaned_data['nombre']
-            disponible = form.cleaned_data['disponible']
-            capacidad = form.cleaned_data['capacidad']
-            descripcion = form.cleaned_data['descripcion']
-            nueva_sala = Sala(nombre=nombre, disponible=disponible, capacidad=capacidad, descripcion=descripcion)
+            nombre = form.cleaned_data["nombre"]
+            disponible = form.cleaned_data["disponible"]
+            capacidad = form.cleaned_data["capacidad"]
+            descripcion = form.cleaned_data["descripcion"]
+            nueva_sala = Sala(
+                nombre=nombre,
+                disponible=disponible,
+                capacidad=capacidad,
+                descripcion=descripcion,
+            )
             nueva_sala.save()
-            context = {
-                'name' : nombre,
-                'disponible': disponible,
-                'capacidad': capacidad,
-                'descripcion': descripcion
-            }
-            return render(request, 'create.html', context)
+            return detail_sala(request, nueva_sala.id)
+        
+
+def detail_sala(request, sala_id):
+    sala = Sala.objects.get(id=sala_id)
+    contexto_dict = {"sala": sala}
+    return render(request, "detail-sala.html", contexto_dict)

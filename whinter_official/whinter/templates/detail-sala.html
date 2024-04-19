@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalle de la Sala</title>
+    <!-- Bootstrap CSS u otro estilo de tu preferencia -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        /* Estilos adicionales si los necesitas */
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Detalle de la Sala</h2>
+        <div class="card mt-3">
+            <div class="card-header">
+                Detalles de la Sala: {{ sala.nombre }}
+            </div>
+            <div class="card-body">
+                <p><strong>Nombre:</strong> {{ sala.nombre }}</p>
+                <p><strong>Disponible:</strong> {% if sala.disponible %} Sí {% else %} No {% endif %}</p>
+                <p><strong>Capacidad:</strong> {{ sala.capacidad }}</p>
+                <p><strong>Descripción:</strong> {{ sala.descripcion }}</p>
+            </div>
+        </div>
+    </div>
+    <!-- Bootstrap JS u otro script de tu preferencia -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
