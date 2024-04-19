@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 
 from .models import Booking, Sala
-from .form import SearchForm, CreateForm
+from .form import SearchForm, CreateSalaForm
 # Create your views here.
 
 # home
@@ -53,44 +53,43 @@ def detail(request, booking_id):
 
 
 def search_form(request):
-    print("-" * 100)
-    print("-" * 100)
-    print(request.method)
     if request.method == 'GET':
         form = SearchForm()
-        form = {
-            'form' : form
-        }
-        return render(request, 'search-form.html', form)
-    
-    elif request.method == 'POST':
+    else:
         form = SearchForm(request.POST)
         if form.is_valid():
             name = form.cleaned_data['name']
-        booking = Booking.objects.filter(name=name).all()
-        context = {
-            'bookings' : booking
-        }
-    return render(request, 'search.html', context)
+            bookings = Booking.objects.filter(name=name).all()
+            context = {
+                'bookings': bookings
+            }
+            return render(request, 'search.html', context)
+    
+    return render(request, 'search-form.html', {'form': form})
+
+
+
+# def create_form(request):
+#     print("-" * 100)
+#     print("-" * 100)
+#     print(request.method)
+#     if request.method == 'GET':
+#         context = {
+#             'create_form' : CreateForm
+#         }
+#         return render(request, 'create-form.html', context)
+    
+#     elif request.method == 'POST':
+#         form = create_form
 
 
 def create_sala(request):
-    print("-" * 100)
-    print("-" * 100)
-    print(request.method)
-    context = {
-        'create' : CreateForm
-    }
-    return render(request, 'create-form.html', context)
-
-
-def create_form(request):
     if request.method == "GET":
-        contexto = {"create_form": CreateForm()}
-        return render(request, 'sala-form.html', contexto)
+        contexto = {"create_form": CreateSalaForm()}
+        return render(request, 'create-sala.html', contexto)
     
     elif request.method == "POST":
-        form = CreateForm(request.POST)
+        form = CreateSalaForm(request.POST)
         if form.is_valid():
             nombre = form.cleaned_data['nombre']
             disponible = form.cleaned_data['disponible']
@@ -98,4 +97,10 @@ def create_form(request):
             descripcion = form.cleaned_data['descripcion']
             nueva_sala = Sala(nombre=nombre, disponible=disponible, capacidad=capacidad, descripcion=descripcion)
             nueva_sala.save()
-            return detail(request, nueva_sala.id)
+            context = {
+                'name' : nombre,
+                'disponible': disponible,
+                'capacidad': capacidad,
+                'descripcion': descripcion
+            }
+            return render(request, 'create.html', context)

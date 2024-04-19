@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Confirmation</title>
+    <title>Sala Confirmation</title>
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -38,14 +38,14 @@
 </head>
 <body>
     <div class="container confirmation-container">
-        <h1 class="text-center">Booking Confirmation</h1>
-        <p>Thank you for your booking!</p>
+        <h1 class="text-center">Sala Confirmation</h1>
+        <p>Thank you for your sala!</p>
         <div class="row">
             <div class="col-sm-6">
-                <p><strong>Name:</strong> {{ booking.name }}</p>
+                <p><strong>Name:</strong> {{ name }}</p>
             </div>
             <div class="col-sm-6">
-                <p><strong>Service:</strong> {{ booking.service }}</p>
+                <p><strong>Description:</strong> {{ descripcion }}</p>
             </div>
         </div>
         <div class="text-center">

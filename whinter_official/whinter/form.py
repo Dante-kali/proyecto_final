@@ -5,7 +5,7 @@ class SearchForm(forms.Form):
     name = forms.CharField(max_length=50,required=True, label='Ingresar nombre de usuario:')\
     
 
-class CreateForm(forms.ModelForm):
+class CreateSalaForm(forms.ModelForm):
     class Meta:
         model = Sala
         fields = ['nombre', 'disponible', 'capacidad', 'descripcion']
@@ -15,3 +15,6 @@ class CreateForm(forms.ModelForm):
             'capacidad': 'Capacidad máxima',
             'descripcion': 'Descripción',
         }
+
+class CreateForm(forms.Form):
+    pass
